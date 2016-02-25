@@ -10,7 +10,7 @@ module.exports = function (grunt) {
   var config = {
     
     // Folders for assets, development environment and production environment
-    folder_dev: 'dev', // Local environment
+    folder_dev: 'public', // Local environment
     folder_dist: 'dist', // Production ready project
     folder_assets: 'assets' // Folder from which assets are copied/moved.
 
@@ -105,7 +105,13 @@ module.exports = function (grunt) {
         files: {
           '<%= config.folder_assets %>/styles/libs/normalize': 'normalize.scss',
           '<%= config.folder_assets %>/styles/libs/jeet': 'jeet.gs/scss/jeet',
-          '<%= config.folder_dev %>/js/vendor/jquery.min.js': 'jquery-latest/dist/jquery.min.js'
+          '<%= config.folder_dev %>/js/vendor/jquery.min.js': 'jquery-latest/dist/jquery.min.js',
+          '<%= config.folder_dev %>/js/vendor/angular': 'angular',
+          '<%= config.folder_dev %>/js/vendor/angular-animate': 'angular-animate',
+          '<%= config.folder_dev %>/js/vendor/angular-mocks.js': 'angular-mocks',
+          '<%= config.folder_dev %>/js/vendor/angular-route': 'angular-route',
+          '<%= config.folder_dev %>/js/vendor/angularjs-toaster': 'angularjs-toaster',
+          '<%= config.folder_dev %>/js/vendor/underscore': 'underscore'
         }
       }
     },
@@ -149,7 +155,7 @@ module.exports = function (grunt) {
         tasks: [
           'watch', // Watch if files change
           'shell:sass_watch', // Run console command to watch Sass compilation
-          'open' // Open the server URL in a browser
+          'express:dev' // Open the server URL in a browser
         ],
 
         options: {
@@ -310,6 +316,17 @@ module.exports = function (grunt) {
         useList: false
       }
     },
+
+    express: {
+      options: {
+        // Override defaults here
+      },
+      dev: {
+        options: {
+          script: 'web-server.js'
+        }
+      }
+    }
 
     
   });
