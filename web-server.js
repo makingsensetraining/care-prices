@@ -19,7 +19,7 @@ app.listen(app.get('port'), function () {
 });
 
 app.get("/", function(req, res) {
-    res.redirect("index.html");
+    res.redirect("public/index.html");
 });
 
 // _____________________________________________________________________________________________________ 
