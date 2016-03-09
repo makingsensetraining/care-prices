@@ -154,8 +154,8 @@ module.exports = function (grunt) {
       watch: {
         tasks: [
           'watch', // Watch if files change
-          'shell:sass_watch', // Run console command to watch Sass compilation
-          'express:dev' // Open the server URL in a browser
+          'shell:sass_watch' // Run console command to watch Sass compilation
+          //'express:dev' // Open the server URL in a browser
         ],
 
         options: {
