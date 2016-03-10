@@ -1,11 +1,7 @@
-var app = angular.module('CarePriceApp',['ngDialog']);
-  
-app.controller('MarketController', ['$http', 'ngDialog', function($http, ngDialog){
+app.controller('MarketController', ['ngDialog', function(ngDialog){
     
   var market = this;
   market.title = "Care Price App";
-  
-  market.prducts = {};
   market.tab = 'market';
   
   market.selectTab = function(setTab){
@@ -16,13 +12,14 @@ app.controller('MarketController', ['$http', 'ngDialog', function($http, ngDialo
     return market.tab === checkTab;
   };
 
-  market.marketName = ["Coto", "Carefour"];
+  market.marketName = ["Coto","Carefour"];
   
   market.addMarket = function () {
       market.errortext = "";
       if (!market.addMe) {return;}
       if (market.marketName.indexOf(market.addMe) == -1) {
           market.marketName.push(market.addMe);
+          market.addMe = '';
       } else {
           market.marketName.errortext = "The market is already in the list.";
       }
@@ -34,25 +31,23 @@ app.controller('MarketController', ['$http', 'ngDialog', function($http, ngDialo
   };
 
   market.clickToOpen = function() {
-    ngDialog.open({ template: 'templateId' });
+    ngDialog.open({ template: 'partial/addProduct.html' });
   };
 
-  market.products = {};
+  market.products = [];
 
-  market.products.addProduct = function(){
-    market.errortext = "";
-    if (!market.addName) {return;}
-    if (market.products.indexOf(market.addName) == -1) {
-        market.products.push(market.addName);
-        market.products.push(market.addPrice);
-    } else {
-        market.product.errortext = "The market is already in the list.";
-    }
+  market.addProduct = function(){
+    market.products.push({
+      name: market.nameProduct,
+      price: market.priceProduct
+    });
+    market.nameProduct = '';
+    market.priceProduct = '';
   };
 
-  market.products.removeMarket = function (X) {
+  market.removeProduct = function (X) {
       market.errortext = "";    
-      market.product.splice(X, 1);
+      market.products.splice(X, 1);
   };
-  
+
 }]);

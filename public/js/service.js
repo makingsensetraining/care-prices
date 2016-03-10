@@ -1,0 +1,1 @@
+app.service('carePriceService', function ($http, $location) {});
