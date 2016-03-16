@@ -1,4 +1,4 @@
-app.controller('MarketController', ['ngDialog', function(ngDialog){
+app.controller('MarketController', ['ngDialog', 'ngTableParams',  function(ngDialog, ngTableParams){
     
   var market = this;
   market.title = "Care Price App";

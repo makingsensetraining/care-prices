@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-var app = angular.module('CarePriceApp', [ 'ngRoute', 'ngDialog' ]);
+var app = angular.module('CarePriceApp', [ 'ngRoute', 'ngDialog', 'ngTable' ]);
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider    
