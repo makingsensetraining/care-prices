@@ -1,53 +1,54 @@
-app.controller('MarketController', ['ngDialog', 'ngTableParams',  function(ngDialog, ngTableParams){
+'use strict';
+
+app.controller('MarketController', ['ngDialog', 'ngTableParams', function($scope, carePriceService, $location, toaster) {
     
-  var market = this;
-  market.title = "Care Price App";
-  market.tab = 'market';
+  $scope.title = "Care Price App";
+  $scope.tab = 'market';
   
-  market.selectTab = function(setTab){
-    market.tab = setTab;
+  $scope.selectTab = function(setTab){
+    $scope.tab = setTab;
   };
   
-  market.isSelected = function(checkTab){
-    return market.tab === checkTab;
+  $scope.isSelected = function(checkTab){
+    return $scope.tab === checkTab;
   };
 
-  market.marketName = ["Coto","Carefour"];
-  
-  market.addMarket = function () {
-      market.errortext = "";
-      if (!market.addMe) {return;}
-      if (market.marketName.indexOf(market.addMe) == -1) {
-          market.marketName.push(market.addMe);
-          market.addMe = '';
-      } else {
-          market.marketName.errortext = "The market is already in the list.";
+  $scope.addMarket = function() {
+    var marketData = {
+      id : '',
+      name : $scope.name,
+      products : {
+        nameProduct: $scope.nameProduct,
+        priceProduct: $scope.priceProduct
       }
+    };
+    carePriceService.create(marketData)
+      .success(function (current, status, headers, config) {
+          $location.path("/markets");
+          toaster.pop('success', "Market added successfully!");
+      })
+      .error(function(current, status, headers, config) {
+          toaster.pop('error', current);
+      });
   };
 
-  market.removeMarket = function (X) {
-      market.errortext = "";    
-      market.marketName.splice(X, 1);
-  };
+  carePriceService.getById($routeParams.marketId)
+    .success(function (current, status, headers, config) {
+        $scope.current = current;
+    })
+    .error(function(current, status, headers, config) {
+        toaster.pop('error', current);
+     });
 
-  market.clickToOpen = function() {
-    ngDialog.open({ template: 'partial/addProduct.html' });
-  };
-
-  market.products = [];
-
-  market.addProduct = function(){
-    market.products.push({
-      name: market.nameProduct,
-      price: market.priceProduct
-    });
-    market.nameProduct = '';
-    market.priceProduct = '';
-  };
-
-  market.removeProduct = function (X) {
-      market.errortext = "";    
-      market.products.splice(X, 1);
-  };
-
+    // removePost function
+  $scope.removePost = function () {
+    carePriceService.remove($scope.current.id)
+      .success(function (current, status, headers, config) {
+          $location.path("/markets/");    
+          toaster.pop('success', "Market removed successfully!");
+      })
+      .error(function(current, status, headers, config) {
+          toaster.pop('error', current);
+      });
+  }
 }]);
