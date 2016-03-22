@@ -23,7 +23,9 @@
 		<!-- Stylesheets and polyfills -->
 		<link rel="stylesheet" type="text/css" href="./css/styles.css">
 		<link rel="stylesheet" type="text/css" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/110131/responsive.css">
-
+		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+		<link rel="stylesheet" type="text/css" href="js/vendor/ng-table/dist/ng-table.css">
+		<link rel="stylesheet" type="text/css" href="js/vendor/ng-dialog/css/ngDialog.min.css">
 		<!--[if lte IE 9]>
 			<link rel="stylesheet" type="text/css" href="./css/oldbrowsers.css">
 		<![endif]-->
@@ -45,35 +47,53 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-TileImage" content="/mstile-144x144.png">
 	</head>
+	
 	<body ng-app="CarePriceApp">
   
-	  <div ng-controller="MarketController as market">
-	      <div class="topbar">
-	        <div class="container">
-	          <div class="row">
-	            <div class="col-s-4">
-	              <h1 ng-click="market.selectTab('market')" class="push-left">{{market.title}}</h1>
-	            </div>
-	            <div class="offset-s-4 col-s-4">
-	              <nav role='navigation' class="push-right">
-	                <ul>
-	                  <li><a href="#" ng-click="market.selectTab('market')">Cliente</a></li> //
-	                  <li><a href="#" ng-click="market.selectTab('new')">Administrador</a></li>
-	                </ul>
-	              </nav> 
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-	  </div>
+  	<div ng-controller="MarketController as market">
+      <div class="topbar">
+        <div class="container">
+          <div class="row">
+            <div class="col-s-4">
+              <h1 ng-click="market.selectTab('market')" class="push-left">{{market.title}}</h1>
+            </div>
+            <div class="offset-s-4 col-s-4">
+              <nav role='navigation' class="push-right">
+                <ul>
+                  <li><a href="#/" ng-click="market.selectTab('market')">Cliente</a></li> ||
+                  <li><a href="#/admin" ng-click="market.selectTab('new')">Administrador</a></li>
+                </ul>
+              </nav> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content">
+			  <div class="container" >
+			    <div class="row">
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="./js/vendor/jquery.min.js"><\/script>')</script>
-    
-    <!-- build:js ./js/script.js -->
-		<script src="./js/foo.js"></script>
+		     		<!-- ng-view, HTML is injected dinamically -->
+		        <div ng-view></div>
+
+					</div>
+				</div>
+			</div>
+  	</div>
+
+  	<!-- scripts -->
+	  	<script src="js/vendor/angular/angular.min.js"></script>
+	    <script src="js/vendor/angular-route/angular-route.min.js"></script>
+	    <script src="js/vendor/angular-animate/angular-animate.min.js" ></script>
+	    <script src="js/vendor/angular-mocks.js/angular-mocks.js" ></script>
+	    <script src="js/vendor/jquery.min.js"></script>    
+	    <script src="js/vendor/underscore/underscore-min.js"></script>
+	    <script src="js/vendor/underscore/underscore-min.js"></script>
+	    <script src="js/vendor/ng-table/dist/ng-table.min.js"></script>
+	    <script src="js/vendor/ng-dialog/js/ngDialog.min.js"></script>
 	    <script type="text/javascript" src="js/app.js"></script>
-	<!-- scripts -->
-	<!-- endbuild -->
+	    <script type="text/javascript" src="js/service.js"></script>
+	    <script type="text/javascript" src="js/controllers/MarketController.js"></script>
+		<!-- endbuild -->
+
 	</body>
 </html>
