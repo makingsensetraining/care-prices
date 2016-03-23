@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('MarketController', ['ngDialog', 'ngTableParams', function($scope, carePriceService, $location, toaster) {
+app.controller('MarketController', ['ngDialog', 'ngTableParams', function($scope, carePriceService, $location, toaster, $routeParams) {
     
   $scope.title = "Care Price App";
   $scope.tab = 'market';
@@ -32,16 +32,16 @@ app.controller('MarketController', ['ngDialog', 'ngTableParams', function($scope
       });
   };
 
-  carePriceService.getById($routeParams.marketId)
+  /*carePriceService.getById($routeParams.marketId)
     .success(function (current, status, headers, config) {
         $scope.current = current;
     })
     .error(function(current, status, headers, config) {
         toaster.pop('error', current);
-     });
+     });*/
 
-    // removePost function
-  $scope.removePost = function () {
+  // removeMarket function
+  $scope.removeMarket = function () {
     carePriceService.remove($scope.current.id)
       .success(function (current, status, headers, config) {
           $location.path("/markets/");    
