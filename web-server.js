@@ -48,25 +48,26 @@ db.once('open', function() {
     var market_example1 = new market({
         id: 1,
         title: 'Coto',
-        products:  [
+        products:  [{
             name: 'Te',
             price: 15
-        ], [
+        }, {
             name: 'Pan',
             price: 10
-        ]
+        }]
+            
     });
 
     var market_example2 = new market({
         id: 2,
         title: 'Carefour',
-        products:  [
+        products:  [{
             name: 'Agua',
-            price: 13
-        ], [
+            price: 15
+        }, {
             name: 'Fideos',
-            price: 17
-        ]    
+            price: 10
+        }]
     });
     
     var contID = 2;
